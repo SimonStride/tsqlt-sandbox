@@ -1,0 +1,16 @@
+version: "3"
+services:
+    sandbox:
+        build: ./src
+        environment:
+            SA_PASSWORD: "tSQLtSandbox1234"
+            ACCEPT_EULA: "Y"
+            MSSQL_AGENT_ENABLED: "true"
+            MSSQL_COLLATION: "Latin1_General_CI_AS"
+            MSSQL_PID: "Developer"
+        ports:
+            - "1001:1433/tcp"
+        container_name: tsqltsandbox
+        hostname: tsqltsandbox
+        stdin_open: true
+        tty: true

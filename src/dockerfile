@@ -1,0 +1,16 @@
+FROM mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+
+COPY . /var/opt/mssql/src
+
+WORKDIR /var/opt/mssql/src
+
+# Ensure permissions to use the setup scripts
+RUN chmod +x ./entrypoint.sh
+RUN chmod +x ./create-database.sh
+RUN chmod +x ./sql/create-sandbox.sql
+RUN chmod +x ./sql/tSQLt-pre-install.sql
+RUN chmod +x ./sql/tSQLt-post-install.sql
+
+RUN chmod +x ./tsqlt/tSQLt.class.sql
+
+CMD /bin/bash ./entrypoint.sh
